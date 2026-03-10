@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Dict
+from typing import Dict, List
 
 import json
 
@@ -69,12 +69,14 @@ class Manager:
 
         self.apartments = {}
         self.tenants = {}
+        self.transfers = []
        
         self.load_data()
 
     def load_data(self):
         self.apartments = Apartment.from_json_file(self.parameters.apartments_json_path)
         self.tenants = Tenant.from_json_file(self.parameters.tenants_json_path)
+        self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
 
 if __name__ == '__main__':
     parameters = Parameters()
@@ -87,4 +89,6 @@ if __name__ == '__main__':
 
     for tenant in manager.tenants.values():
         print(tenant.name, tenant.apartment, tenant.room, tenant.rent_pln, tenant.deposit_pln, tenant.date_agreement_from, tenant.date_agreement_to)
-    
+        for transfer in manager.transfers:
+            if transfer.tenant == tenant.name:
+                print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
