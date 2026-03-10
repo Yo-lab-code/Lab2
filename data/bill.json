@@ -1,0 +1,15 @@
+{
+    "billData1": {
+        "quote": "1000",
+        "paymentDate": "10-03-2026",
+        "type": "room-bigger",
+        "placeType": "main-flat"
+    },
+
+    "billData2": {
+        "quote": "100",
+        "paymentDate": "30-10-2026",
+        "type": "room-smaller",
+        "placeType": "aux-flat"
+    }
+}
